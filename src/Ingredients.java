@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 public class Ingredients extends Object implements Serializable {
-    //protected List<Ingredient> ingredients;
+    //This is the ingredients class. it gets serialized into ingredients.txt
     protected HashMap<String,Ingredient> ingredients;
     public Ingredients(){
         ingredients = new HashMap<>();

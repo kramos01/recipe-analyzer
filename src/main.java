@@ -14,6 +14,9 @@ public class main {
         Ingredients ingredients = new Ingredients();
         ingredients.setIngredients(IngredientsMenu.loadIngredients(ingredients).getIngredients());
 
+        Recipes recipes = new Recipes();
+        recipes.setRecipes(RecipesMenu.loadRecipes(recipes).getRecipes());
+
         while (running) {
             printOptions();
             try {
@@ -30,10 +33,11 @@ public class main {
                     running = false;
                     break;
                 case 1:
+                    // runs the ingredients menu while loop
                     IngredientsMenu.runIngredientsMenu(ingredients, scanner);
                     break;
                 case 2:
-                    System.out.printf("Foo");
+                    RecipesMenu.runRecipesMenu(recipes, scanner);
 
                     break;
                 case 3:
@@ -52,7 +56,7 @@ public class main {
         System.out.printf("[printOptions] Pick an option [0-3]. %n");
         System.out.printf("[printOptions] 0 ) Quit %n");
         System.out.printf("[printOptions] 1 ) Ingredients Menu%n");
-        System.out.printf("[printOptions] 2 ) foo%n");
+        System.out.printf("[printOptions] 2 ) Recipes Menu%n");
         System.out.printf("[printOptions] 3 ) foobar%n");
         System.out.printf("[printOptions] %n");
     }

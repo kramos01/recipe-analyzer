@@ -9,9 +9,6 @@ import java.util.Scanner;
 
 public class IngredientsMenu {
 
-    public IngredientsMenu(){
-
-    }
      // INGREDIENTS MENU
     public static void runIngredientsMenu(Ingredients ingredients, Scanner scanner) {
         boolean ingredientsRunning = true;
