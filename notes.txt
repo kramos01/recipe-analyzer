@@ -1,0 +1,53 @@
+Recipe Analyzer
+- Recipe Title
+- Servings
+- Timing Information
+-- prep time
+-- cook time
+-- total time
+- Ingredient List
+-- Quantity
+-- Unit
+-- Description
+-- Nutritional Values
+--- Calories(kcal)
+--- Total Fat (g)
+---- Saturated Fat (g)
+---- Trans Fat (g)
+--- Cholestrerol (mg)
+--- Sodium (mg)
+--- Total Carbohydrate (g)
+---- Dietary Fiber (g)
+---- Total Sugars (g)
+---- Added Sugars (g)
+--- Protien (g)
+--- Micronutrients
+---- Vitamin A
+---- Vitamin C
+---- Vitamin D
+---- Vitamin E
+---- Vitamin K
+---- Vitamin B
+----- B1
+----- B2
+----- B3
+----- B5
+----- B6
+----- B7
+----- B9
+----- B12
+--- Choline
+--- Calcium
+--- Iron
+--- Potassuim
+--- Magnesium
+--- Zinc
+--- Iodine
+--- Copper
+--- Manganese
+--- Selenium
+- Step By Step Instructions
+-- 
+
+# recipe-analyzer
+Software for reviewing recipe data.
