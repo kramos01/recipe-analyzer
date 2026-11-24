@@ -8,13 +8,54 @@ import java.util.HashMap;
 
 public class main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean running = true;
+        int choice;
         Ingredients ingredients = new Ingredients();
-
         ingredients.setIngredients(loadIngredients(ingredients).getIngredients());
 
-        printIngredients(ingredients);
+        while (running) {
+            printOptions();
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                choice = -1;
+                scanner.nextLine();
+            }
 
-        // test
+            switch (choice) {
+                case 0:
+                    System.out.printf("Quitting");
+                    running = false;
+                    break;
+                case 1:
+                    printIngredients(ingredients);
+
+                    break;
+                case 2:
+                    newIngredient(ingredients, scanner);
+
+                    break;
+                case 3:
+                    removeIngredient(ingredients, scanner);
+
+                    break;
+                default:
+                    System.out.printf("Invalid choice.");
+            }
+            System.out.printf("%n");
+        }
+        scanner.close();
+    }
+
+    public static void printOptions() {
+        System.out.printf("[printOptions] Pick an option [0-3]. %n");
+        System.out.printf("[printOptions] 0 ) Quit %n");
+        System.out.printf("[printOptions] 1 ) Print Ingredients %n");
+        System.out.printf("[printOptions] 2 ) Add New Ingredient %n");
+        System.out.printf("[printOptions] 3 ) Remove Ingredient %n");
+        System.out.printf("[printOptions] %n");
 
     }
 
@@ -48,13 +89,12 @@ public class main {
     }
 
     // create new person
-    public static void newIngredient(Ingredients ingredients) {
+    public static void newIngredient(Ingredients ingredients, Scanner scanner) {
         String name = "";
 
-        Scanner scanner = new Scanner(System.in);
         System.out.printf("[newIngredient] What is the ingredient's name you want to add?%n");
         name = scanner.nextLine();
-        scanner.close();
+
         Ingredient ingredient = new Ingredient(name);
 
         if (!ingredients.getIngredients().containsKey(ingredient.getName())) {
@@ -67,15 +107,14 @@ public class main {
         }
     }
 
-    public static void removeIngredient(Ingredients ingredients) {
+    public static void removeIngredient(Ingredients ingredients, Scanner scanner) {
         printIngredients(ingredients);
 
         String name = "";
 
-        Scanner scanner = new Scanner(System.in);
         System.out.printf("[removeIngredient] What is the ingredient's name you want to remove?%n");
         name = scanner.nextLine();
-        scanner.close();
+
         Ingredient ingredient = new Ingredient(name);
 
         if (ingredients.getIngredients().containsKey(ingredient.getName())) {
@@ -93,6 +132,7 @@ public class main {
         for (HashMap.Entry<String, Ingredient> entry : ingredients.getIngredients().entrySet()) {
             System.out.printf("[printIngredients] %s.%n", entry.getKey());
         }
+        System.out.printf("[printIngredients] %n");
     }
 
 }
