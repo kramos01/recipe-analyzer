@@ -30,6 +30,54 @@ public class main {
                     running = false;
                     break;
                 case 1:
+                    runIngredientsMenu(ingredients, scanner);
+                    break;
+                case 2:
+                    System.out.printf("Foo");
+
+                    break;
+                case 3:
+                    System.out.printf("Foobar");
+
+                    break;
+                default:
+                    System.out.printf("Invalid choice.");
+            }
+            System.out.printf("%n");
+        }
+        scanner.close();
+    }
+
+    public static void printOptions() {
+        System.out.printf("[printOptions] Pick an option [0-3]. %n");
+        System.out.printf("[printOptions] 0 ) Quit %n");
+        System.out.printf("[printOptions] 1 ) Ingredients Menu%n");
+        System.out.printf("[printOptions] 2 ) foo%n");
+        System.out.printf("[printOptions] 3 ) foobar%n");
+        System.out.printf("[printOptions] %n");
+    }
+
+    // INGREDIENTS MENU
+    public static void runIngredientsMenu(Ingredients ingredients, Scanner scanner) {
+        boolean ingredientsRunning = true;
+        int choice;
+
+        while (ingredientsRunning) {
+            printIngredientsOptions();
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                choice = -1;
+                scanner.nextLine();
+            }
+
+            switch (choice) {
+                case 0:
+                    System.out.printf("Quitting Ingredients Menu");
+                    ingredientsRunning = false;
+                    break;
+                case 1:
                     printIngredients(ingredients);
 
                     break;
@@ -46,19 +94,18 @@ public class main {
             }
             System.out.printf("%n");
         }
-        scanner.close();
     }
 
-    public static void printOptions() {
-        System.out.printf("[printOptions] Pick an option [0-3]. %n");
-        System.out.printf("[printOptions] 0 ) Quit %n");
-        System.out.printf("[printOptions] 1 ) Print Ingredients %n");
-        System.out.printf("[printOptions] 2 ) Add New Ingredient %n");
-        System.out.printf("[printOptions] 3 ) Remove Ingredient %n");
-        System.out.printf("[printOptions] %n");
-
+    public static void printIngredientsOptions() {
+        System.out.printf("[printIngredientsOptions] Pick an option [0-3]. %n");
+        System.out.printf("[printIngredientsOptions] 0 ) Quit Ingredients%n");
+        System.out.printf("[printIngredientsOptions] 1 ) Print Ingredients %n");
+        System.out.printf("[printIngredientsOptions] 2 ) Add New Ingredient %n");
+        System.out.printf("[printIngredientsOptions] 3 ) Remove Ingredient %n");
+        System.out.printf("[printIngredientsOptions] %n");
     }
 
+    // SAVING / LOADING
     public static void saveIngredients(Ingredients ingredients) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream("ingredients.txt");
@@ -72,10 +119,8 @@ public class main {
         }
     }
 
-    // save slot machine
     public static Ingredients loadIngredients(Ingredients ingredients) {
         try {
-            // load
             FileInputStream fileInputStream = new FileInputStream("ingredients.txt");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             ingredients = (Ingredients) objectInputStream.readObject();
@@ -88,7 +133,7 @@ public class main {
         return ingredients;
     }
 
-    // create new person
+    // New / Remove
     public static void newIngredient(Ingredients ingredients, Scanner scanner) {
         String name = "";
 
@@ -99,7 +144,6 @@ public class main {
 
         if (!ingredients.getIngredients().containsKey(ingredient.getName())) {
             ingredients.addIngredient(ingredient);
-            // save test
             saveIngredients(ingredients);
             System.out.printf("[newIngredient] Addeded %s to Ingredient class.%n", ingredient.getName());
         } else {
@@ -127,6 +171,7 @@ public class main {
         }
     }
 
+    // Print
     public static void printIngredients(Ingredients ingredients) {
         System.out.printf("[printIngredients] Current Ingredients: %n");
         for (HashMap.Entry<String, Ingredient> entry : ingredients.getIngredients().entrySet()) {
