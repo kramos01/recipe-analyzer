@@ -1,17 +1,18 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
+import java.util.HashMap;
 
 public class Ingredients extends Object implements Serializable {
-    protected List<Ingredient> ingredients;
-
+    //protected List<Ingredient> ingredients;
+    protected HashMap<String,Ingredient> ingredients;
     public Ingredients(){
-        ingredients = new ArrayList<>();
+        ingredients = new HashMap<>();
     }
 
     // getters
-    public List<Ingredient> getIngredients(){ return ingredients;}
-    public void setIngredients(List<Ingredient> ingredients){this.ingredients=ingredients;}
-    public void addIngredient(Ingredient ingredient){ingredients.add(ingredient);}
-    public void removeIngredient(Ingredient ingredient){ingredients.remove(ingredient);}
+    public HashMap<String,Ingredient>  getIngredients(){ return ingredients;}
+    public void setIngredients(HashMap<String,Ingredient>  ingredients){this.ingredients=ingredients;}
+    public void addIngredient(Ingredient ingredient){ingredients.put(ingredient.getName(),ingredient);}
+    public void removeIngredient(Ingredient ingredient){ingredients.remove(ingredient.getName());}
 }
