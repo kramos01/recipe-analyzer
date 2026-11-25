@@ -50,7 +50,7 @@ public class IngredientsMenu {
 
     public static void printIngredientsOptions() {
         System.out.printf("[printIngredientsOptions] Pick an option [0-3]. %n");
-        System.out.printf("[printIngredientsOptions] 0 ) Quit Ingredients%n");
+        System.out.printf("[printIngredientsOptions] 0 ) Quit Ingredients Menu%n");
         System.out.printf("[printIngredientsOptions] 1 ) Print Ingredients %n");
         System.out.printf("[printIngredientsOptions] 2 ) Add New Ingredient %n");
         System.out.printf("[printIngredientsOptions] 3 ) Remove Ingredient %n");

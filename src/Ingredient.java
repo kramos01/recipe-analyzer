@@ -1,5 +1,5 @@
 import java.io.Serializable;
-
+// holds the base for the ingredient stores nutrition data, name and description
 public class Ingredient extends Object implements Serializable {
     protected String name;
     protected String description;

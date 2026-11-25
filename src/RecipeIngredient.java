@@ -1,5 +1,5 @@
 import java.io.Serializable;
-
+// uses an ingredient and holds quantity and unit for a recipe
 public class RecipeIngredient extends Object implements Serializable {
     protected Ingredient ingredient;
     protected double quantity;

@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class RecipesMenu {
 
-     // RECIPES MENU
+    // RECIPES MENU
     public static void runRecipesMenu(Recipes recipes, Scanner scanner) {
         boolean recipesRunning = true;
         int choice;
@@ -41,20 +41,27 @@ public class RecipesMenu {
                     removeRecipe(recipes, scanner);
 
                     break;
+                case 4:
+
+                    RecipeEditorMenu.runRecipeEditorMenuMenu(recipes,scanner);
+                    break;
                 default:
                     System.out.printf("Invalid choice.");
             }
             System.out.printf("%n");
         }
     }
-
+    
+    // RECIPES
     public static void printRecipesOptions() {
-        System.out.printf("[printRecipesOptions] Pick an option [0-3]. %n");
-        System.out.printf("[printRecipesOptions] 0 ) Quit Recipes%n");
-        System.out.printf("[printRecipesOptions] 1 ) Print Recipes %n");
-        System.out.printf("[printRecipesOptions] 2 ) Add New Recipe %n");
-        System.out.printf("[printRecipesOptions] 3 ) Remove Recipe %n");
-        System.out.printf("[printRecipesOptions] %n");
+        String label = "printRecipesOptions";
+        System.out.printf("[%s] Pick an option [0-3]. %n", label);
+        System.out.printf("[%s] 0 ) Quit Recipes Menu%n", label);
+        System.out.printf("[%s] 1 ) Print Recipes %n", label);
+        System.out.printf("[%s] 2 ) Add New Recipe %n", label);
+        System.out.printf("[%s] 3 ) Remove Recipe %n", label);
+        System.out.printf("[%s] 4 ) Edit Recipe %n", label);
+        System.out.printf("[%s] %n",label);
     }
 
     // SAVING / LOADING
@@ -90,9 +97,9 @@ public class RecipesMenu {
         String title = "";
 
         System.out.printf("[newRecipe] What is the recipe's title you want to add?%n");
-        title= scanner.nextLine();
+        title = scanner.nextLine();
 
-        Recipe recipe= new Recipe(title);
+        Recipe recipe = new Recipe(title);
 
         if (!recipes.getRecipes().containsKey(recipe.getTitle())) {
             recipes.addRecipe(recipe);
