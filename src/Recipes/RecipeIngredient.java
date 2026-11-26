@@ -1,4 +1,7 @@
+package Recipes;
 import java.io.Serializable;
+
+import Ingredients.Ingredient;
 // uses an ingredient and holds quantity and unit for a recipe
 public class RecipeIngredient extends Object implements Serializable {
     protected Ingredient ingredient;

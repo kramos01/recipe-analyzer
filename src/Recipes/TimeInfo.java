@@ -1,3 +1,4 @@
+package Recipes;
 import java.io.Serializable;
 public class TimeInfo extends Object implements Serializable {
     protected int prepTimeMinutes;

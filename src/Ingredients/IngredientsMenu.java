@@ -1,3 +1,4 @@
+package Ingredients;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,6 +29,7 @@ public class IngredientsMenu {
                 case 0:
                     System.out.printf("Quitting Ingredients Menu");
                     ingredientsRunning = false;
+
                     break;
                 case 1:
                     printIngredients(ingredients);
@@ -41,6 +43,9 @@ public class IngredientsMenu {
                     removeIngredient(ingredients, scanner);
 
                     break;
+                case 4:
+                    IngredientEditorMenu.runIngredientEditorMenu(ingredients, scanner);
+
                 default:
                     System.out.printf("Invalid choice.");
             }
@@ -54,6 +59,7 @@ public class IngredientsMenu {
         System.out.printf("[printIngredientsOptions] 1 ) Print Ingredients %n");
         System.out.printf("[printIngredientsOptions] 2 ) Add New Ingredient %n");
         System.out.printf("[printIngredientsOptions] 3 ) Remove Ingredient %n");
+        System.out.printf("[printIngredientsOptions] 4 ) Edit Ingredient %n");
         System.out.printf("[printIngredientsOptions] %n");
     }
 
@@ -131,5 +137,4 @@ public class IngredientsMenu {
         }
         System.out.printf("[printIngredients] %n");
     }
-
 }

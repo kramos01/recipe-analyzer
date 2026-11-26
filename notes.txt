@@ -1,3 +1,11 @@
+# Git initialization - add steps below
+
+# Basic Git Flow
+git status
+git add .
+git commit -m "short description"
+git push origin main
+
 Recipe Analyzer
 - Recipe Title
 - Servings
