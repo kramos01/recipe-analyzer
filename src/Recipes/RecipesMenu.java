@@ -1,4 +1,5 @@
 package Recipes;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -7,7 +8,6 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 
 // This class is for managing all the recipes
 public class RecipesMenu {
@@ -46,11 +46,11 @@ public class RecipesMenu {
                     break;
                 case 4:
 
-                    RecipeEditorMenu.runRecipeEditorMenuMenu(recipes,scanner);
+                    RecipeEditorMenu.runRecipeEditorMenuMenu(recipes, scanner);
                     break;
-                case 5: 
-                    
-                    printRecipe(recipes,scanner);
+                case 5:
+
+                    printRecipe(recipes, scanner);
                     break;
                 default:
                     System.out.printf("Invalid choice.");
@@ -58,7 +58,7 @@ public class RecipesMenu {
             System.out.printf("%n");
         }
     }
-    
+
     // RECIPES
     public static void printRecipesOptions() {
         String label = "printRecipesOptions";
@@ -69,7 +69,7 @@ public class RecipesMenu {
         System.out.printf("[%s] 3 ) Remove Recipe %n", label);
         System.out.printf("[%s] 4 ) Edit Recipe %n", label);
         System.out.printf("[%s] 5 ) Print A Recipe %n", label);
-        System.out.printf("[%s] %n",label);
+        System.out.printf("[%s] %n", label);
     }
 
     // SAVING / LOADING
@@ -109,12 +109,33 @@ public class RecipesMenu {
 
         Recipe recipe = new Recipe(title);
 
-
-
-
-        
-
         if (!recipes.getRecipes().containsKey(recipe.getTitle())) {
+            RecipeEditorMenu.setTimes(recipes, scanner, title);
+            boolean addingIngredients = true;
+            String input = "";
+            while (addingIngredients) {
+                RecipeEditorMenu.addIngredient(recipes, scanner, title);
+                System.out.printf("[newRecipe] Conmtinue adding ingredients?.%n");
+                input = scanner.nextLine();
+                if (input != "yes" && input != "y") {
+                    addingIngredients = false;
+                }
+            }
+
+            boolean addingSteps = true;
+            input = "";
+            while (addingSteps) {
+                RecipeEditorMenu.addStep(recipes, scanner, title);
+                System.out.printf("[newRecipe] Conmtinue adding steps?.%n");
+                input = scanner.nextLine();
+                if (input != "yes" && input != "y") {
+                    addingSteps= false;
+                }
+            }
+
+            RecipeEditorMenu.setServing(recipes, scanner, title);
+
+
             recipes.addRecipe(recipe);
             saveRecipes(recipes);
             System.out.printf("[newRecipe] Addeded %s to Recipe class.%n", recipe.getTitle());
@@ -152,12 +173,12 @@ public class RecipesMenu {
         System.out.printf("[printRecipes] %n");
     }
 
-    public static void printRecipe(Recipes recipes, Scanner scanner){
+    public static void printRecipe(Recipes recipes, Scanner scanner) {
         String label = "printRecipe";
         RecipesMenu.printRecipes(recipes);
         System.out.printf("What recipe do you want view?%n");
         String title = "";
- 
+
         try {
             title = scanner.nextLine();
         } catch (Exception e) {
@@ -169,7 +190,7 @@ public class RecipesMenu {
         if (recipes.getRecipes().containsKey(title)) {
             RecipeEditorMenu.printRecipe(recipes, scanner, title);
         } else {
-            System.out.printf("[%s] Recipe not found.%n",label);
+            System.out.printf("[%s] Recipe not found.%n", label);
         }
     }
 
