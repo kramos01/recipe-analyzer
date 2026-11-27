@@ -1,5 +1,6 @@
 package Recipes;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,6 +14,8 @@ public class Recipe extends Object implements Serializable {
     
     public Recipe(String title){
         this.title=title;
+        ingredients = new HashMap<>();
+        steps = new ArrayList<>();
     }
 
     public String getTitle(){return title;}
@@ -27,6 +30,9 @@ public class Recipe extends Object implements Serializable {
     public void setServings(int servings){this.servings=servings;}
     public void setPrepTime(int prepTime){this.prepTime=prepTime;}
     public void setCookTime(int cookTime){this.cookTime=cookTime;}
-    public void addIngredient(String ingredientName,int amount){this.ingredients.put(ingredientName,amount);}
-    public void addStep(String step){this.steps.add(step);}
+    public void addIngredient(String ingredientName,int amount){ingredients.put(ingredientName,amount);}
+    public void removeIngredient(String ingredientName){ingredients.remove(ingredientName);}
+    public void addStep(String step){steps.add(step);}
+    public void removeStep(String step){steps.remove(step);}
+    public void editStep(Integer index,String step){steps.set(index, step);}
 }

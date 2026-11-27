@@ -78,7 +78,10 @@ public class RecipeEditorMenu {
                         // edit step
                         editStep(recipes, scanner, title);
                         break;
-
+                      case 10:
+                        // edit step
+                        editStep(recipes, scanner, title);
+                        break;
                     default:
                         System.out.printf("Invalid choice.");
                 }
@@ -104,6 +107,8 @@ public class RecipeEditorMenu {
         System.out.printf("[%s] 7 ) Add Step %n", label);
         System.out.printf("[%s] 8 ) Remove Step %n", label);
         System.out.printf("[%s] 9 ) Edit Step %n", label);
+        System.out.printf("[%s] 10 ) Set Serving %n", label);
+
         System.out.printf("[%s] %n", label);
     }
 
@@ -121,6 +126,17 @@ public class RecipeEditorMenu {
 
             int totalTime = recipe.getPrepTime() + recipe.getCookTime();
             System.out.printf("[%s] Total Time: %d%n", label, totalTime);
+            
+            System.out.printf("[printRecipes] Current Ingredients: %n");
+            for (HashMap.Entry<String, Integer> entry : recipe.getIngredients().entrySet()) {
+                System.out.printf("[printRecipes] %s %d.%n", entry.getKey(),entry.getValue());
+            }
+
+            System.out.printf("[%s] Steps:%n", label);
+            for (String step : recipe.getSteps()) {
+                System.out.printf("[%s] %s %n", label,step);
+            }
+
             System.out.printf("[%s] %n", label);
         } else {
             System.out.printf("[%s] Recipe not found.%n", label);
@@ -143,6 +159,7 @@ public class RecipeEditorMenu {
         System.out.printf("[setTitle] Changed recipe name from %s to %s.%n", title, newTitle);
         return newTitle;
     }
+
 
     public static void setTimes(Recipes recipes, Scanner scanner, String title) {
         Recipe recipe = recipes.getRecipes().get(title);
@@ -221,7 +238,7 @@ public class RecipeEditorMenu {
             System.out.printf("[%s] Not an integer. Input a number.%n", label);
         }
 
-        if (!recipe.getIngredients().containsKey(ingredientName)) {
+      
             recipes.getRecipes().remove(title);
             recipe.addIngredient(ingredientName, amount);
 
@@ -230,9 +247,7 @@ public class RecipeEditorMenu {
             RecipesMenu.saveRecipes(recipes);
 
             System.out.printf("[%s] Added %s %d to %s%n", label, ingredientName, amount, title);
-        } else {
-            System.out.printf("[%s] %s already added to %s%n", label, ingredientName, title);
-        }
+      
 
     }
 
@@ -251,6 +266,7 @@ public class RecipeEditorMenu {
         }
 
         if (recipe.getIngredients().containsKey(ingredientName)) {
+            recipe.removeIngredient(ingredientName);
             recipes.getRecipes().remove(title);
 
             RecipesMenu.saveRecipes(recipes);
@@ -336,4 +352,38 @@ public class RecipeEditorMenu {
 
     }
 
+    public static void setServing(Recipes recipes, Scanner scanner, String title) {
+
+        Recipe recipe = recipes.getRecipes().get(title);
+        int servings = recipe.getServings();
+
+        int oldServings = servings;
+
+        // set timing
+        String label = "setServings";
+        try {
+            System.out.printf("[%s] What is the servings you want to set?%n", label);
+            System.out.printf("[%s] Current servings: [%d]%n", label, servings);
+
+            servings = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.printf("[%s]  Not an integer. Input a number.%n", label);
+        }
+        
+
+        recipes.getRecipes().remove(title);
+
+        recipe.setServings(servings);
+     
+
+        recipes.getRecipes().put(title, recipe);
+
+        RecipesMenu.saveRecipes(recipes);
+
+        System.out.printf("[setTitle] Changed %s's servings: %d -> %d.%n", title, oldServings,
+                servings);
+
+    }
+
+    
 }
