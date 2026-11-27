@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
+// This class is for managing all the recipes
 public class RecipesMenu {
 
     // RECIPES MENU
@@ -46,6 +48,10 @@ public class RecipesMenu {
 
                     RecipeEditorMenu.runRecipeEditorMenuMenu(recipes,scanner);
                     break;
+                case 5: 
+                    
+                    printRecipe(recipes,scanner);
+                    break;
                 default:
                     System.out.printf("Invalid choice.");
             }
@@ -62,6 +68,7 @@ public class RecipesMenu {
         System.out.printf("[%s] 2 ) Add New Recipe %n", label);
         System.out.printf("[%s] 3 ) Remove Recipe %n", label);
         System.out.printf("[%s] 4 ) Edit Recipe %n", label);
+        System.out.printf("[%s] 5 ) Print A Recipe %n", label);
         System.out.printf("[%s] %n",label);
     }
 
@@ -138,6 +145,27 @@ public class RecipesMenu {
             System.out.printf("[printRecipes] %s.%n", entry.getKey());
         }
         System.out.printf("[printRecipes] %n");
+    }
+
+    public static void printRecipe(Recipes recipes, Scanner scanner){
+        String label = "printRecipe";
+        RecipesMenu.printRecipes(recipes);
+        System.out.printf("What recipe do you want view?%n");
+        String title = "";
+ 
+        try {
+            title = scanner.nextLine();
+        } catch (Exception e) {
+
+            scanner.nextLine();
+        }
+
+        // check if recipe exists
+        if (recipes.getRecipes().containsKey(title)) {
+            RecipeEditorMenu.printRecipe(recipes, scanner, title);
+        } else {
+            System.out.printf("[%s] Recipe not found.%n",label);
+        }
     }
 
 }

@@ -1,8 +1,8 @@
+// change it so recipes store the ingredients
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Ingredients.Ingredients;
-import Ingredients.IngredientsMenu;
+
 import Recipes.Recipes;
 import Recipes.RecipesMenu;
 
@@ -11,8 +11,6 @@ public class main {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
         int choice;
-        Ingredients ingredients = new Ingredients();
-        ingredients.setIngredients(IngredientsMenu.loadIngredients(ingredients).getIngredients());
 
         Recipes recipes = new Recipes();
         recipes.setRecipes(RecipesMenu.loadRecipes(recipes).getRecipes());
@@ -33,14 +31,10 @@ public class main {
                     running = false;
                     break;
                 case 1:
-                    // runs the ingredients menu while loop
-                    IngredientsMenu.runIngredientsMenu(ingredients, scanner);
-                    break;
-                case 2:
                     RecipesMenu.runRecipesMenu(recipes, scanner);
 
                     break;
-                case 3:
+                case 2:
                     System.out.printf("Foobar");
 
                     break;
@@ -55,9 +49,8 @@ public class main {
     public static void printOptions() {
         System.out.printf("[printOptions] Pick an option [0-3]. %n");
         System.out.printf("[printOptions] 0 ) Quit %n");
-        System.out.printf("[printOptions] 1 ) Ingredients Menu%n");
-        System.out.printf("[printOptions] 2 ) Recipes Menu%n");
-        System.out.printf("[printOptions] 3 ) foobar%n");
+        System.out.printf("[printOptions] 1 ) Recipes Menu%n");
+        System.out.printf("[printOptions] 2 ) foobar%n");
         System.out.printf("[printOptions] %n");
     }
 
